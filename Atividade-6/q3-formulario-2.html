@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Formulario-2</title>
+</head>
+<body>
+   <h1>Formulário de  Entrevista de Emprego </h1>
+   <div>
+      <fieldset style="width: 50vh">
+         <legend> <h1>Dados Gerais</h1> </legend>
+            <div>
+               <fieldset style="width:30vw">
+                  <legend> <h2>Dados Pessoais</h2> </legend>
+                     <label>Nome completo</label>
+                     <br />
+                     <input type="text" id="nome" name="nome" minlength="0" maxlength="70">
+                     <br />
+                     <br />
+                     <label>CPF</label>
+                     <br />
+                     <input type="text" id="CPF" name="CPF">
+                     <br />
+                     <br />
+                     <label>RG</label>
+                     <br />
+                     <input type="text" id="CPF" name="CPF">
+                     <br />
+                     <br />
+                     <label>Data de Nascimento</label>
+                     <br />
+                     <input type="date" id="data" name="data">
+                     <br />
+                     <br />
+                     <label>Nacionalidade</label>
+                     <br />
+                     <input type="text" id="nacionalidade" name="nacionalidade">
+                     <br />
+                     <br />
+                     <label>Sexo</label>
+                     <br />
+                     <select name="sexo">
+                        <option value=m>Masculino</option>
+                        <option value=f>Feminino</option>
+                        <option value=n>Não quero informar</option>
+                     </select>
+                     <br />
+                     <br />
+                     <label>Cor/raça</label>
+                     <br />
+                     <select name="cor-raca">
+                        <option value=ind>Indígena</option>
+                        <option value=branco>Branco</option>
+                        <option value=preto>Preto</option>
+                        <option value=pardo>Pardo</option>
+                        <option value=amarelo>Amarelo</option>
+                        <option value=n>Não Declarar</option>
+                     </select>
+
+                     <br />
+                  </div>
+                  <div>
+                     <fieldset style="width:30vw">
+                        <legend> <h2>Dados para Contato </h2> </legend>
+                        <label>E-mail</label>
+                        <br />
+                        <input type="email" id="email" name="email">
+                        <br />
+                        <br />
+                        <label>Celular</label>
+                        <br />
+                        <input type="tel" id="celular" name="celular">
+                        <br />
+                        <br />
+                        <label>Telefone</label>
+                        <br />
+                        <input type="tel" id="telefone" name="telefone">
+                        <br />
+                        <br />
+                     </fieldset>
+
+                  </div>
+
+                  
+               </fieldset>
+             </div>
+         <div>
+            <fieldset style="width:60vw ; position: absolute; right: 0vw; top: 12vh;" >
+               <legend> <h2>Dados para o Emprego </h2> </legend>
+               <label>Para qual vaga você está se candidatando?</label>
+               <input type="radio" id="professor" name="vaga">
+               <label>Professor</label>
+               <input type="radio" id="developer" name="vaga">
+               <label>Developer</label>
+               <input type="radio" id="gerente" name="vaga">
+               <label>Gerente</label>
+               <input type="radio" id="analista" name="vaga">
+               <label>Analista</label>
+               <br />
+               <br />
+               <label>Possui experiêcia para o cargo?</label>
+               <input type="radio" id="s" name="exp">
+               <label>Sim</label>
+               <input type="radio" id="n" name="exp">
+               <label>Não</label>
+               <br />
+               <br />
+               <label>Se possui experiência, quanto tempo de experiência?</label>
+               <input type="radio" id="1-ano" name="tempo">
+               <label>Até 1 ano</label>
+               <input type="radio" id="2-ano" name="tempo">
+               <label>Até 2 anos</label>
+               <input type="radio" id="2-5-ano" name="tempo">
+               <label>Entre 2-5 anos</label>
+               <input type="radio" id="5-ano" name="tempo">
+               <label>Mais que 5 anos</label>
+               <br />
+               <br />
+               <label>Quais as características que você gosta no emprego?</label>
+               <br />
+               <input type="checkbox" id="conforto1" name="conforto1">
+               <label>Se sente confortável trabalhando sozinho</label>
+               <br />
+               <input type="checkbox" id="conforto2" name="conforto2">
+               <label>Se sente confortável trabalhando em grupo</label>
+               <br />
+               <input type="checkbox" id="salario" name="salario">
+               <label>Se interessa pelo salário</label>
+               <br />
+               <input type="checkbox" id="result1" name="result1">
+               <label>Gosta de mostrar resultados rápidos </label>
+               <br />
+               <input type="checkbox" id="result2" name="result2">
+               <label>Gosta de mostrar resultados consistentes </label>
+               <br />
+               <br />
+               <label>De 0 à 10 qual seu nível de conforto trabalhando em equipe </label>
+               <br />
+               <input type="range" id="range-conf" name="range-conf" value="5" min="0" max="10">
+               <br />
+               <br />
+               <label>De 0 à 10 qual seu nível de conforto trabalhando sozinho </label>
+               <br />
+               <input type="range" id="range-conf2" name="range-conf2" value="5" min="0" max="10">
+               
+            </fieldset>
+         </div>
+         <div>
+            <br />
+            <input type="reset">
+            <input type="submit">
+         </div>
+      </fieldset>
+   </div>
+</body>
+</html>
