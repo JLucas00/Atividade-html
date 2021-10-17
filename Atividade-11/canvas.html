@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br" prefix="og: https://ogp.me/ns#">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Canvas</title>
+
+   <meta property="og:title" content="Xadrez usando Canvas">
+   <meta property="og:description" content="Esta página exibe um tabuleiro de xadrez com peças interativas">
+   <meta property="og:type" content="article">
+   <meta property="article:author" content="João Lucas">
+   <meta property="article:section" content="Jogo">
+   <meta property="article:tag" content="Xadrez">
+   <meta property="og:url" content="">
+   <meta property="og:image" content="https://images-americanas.b2w.io/produtos/01/00/img/1348219/1/1348219185_1GG.jpg">
+   <meta property="og:image:type" content="image/jpeg">
+   <meta property="og:image:width" content="400">
+   <meta property="og:image:heigth" content="400">
+
+   <style>
+      *{
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+      }
+      
+   </style>
+</head>
+<body onload="draw(); descricao(); " style="background-color:rgb(148, 224, 247);">
+
+   <div>
+      <canvas id="canvas" width="1500px" height="540px">Este Navegador não possui suporte para canvas</canvas>
+   </div>
+   
+   <div style="display: none">
+      <img src="peaobranco.svg" id="pb"/>
+      <img src="peaopreto.svg" id="pp"/>
+      <img src="torrebranca.svg" id="tb"/>
+      <img src="torrepreta.svg" id="tp"/>
+      <img src="cavalobranco.svg" id="cb"/>
+      <img src="cavalopreto.svg" id="cp"/>
+      <img src="bispobranco.svg" id="bb"/>
+      <img src="bispopreto.svg" id="bp"/>
+      <img src="damabranca.svg" id="db"/>
+      <img src="damapreta.svg" id="dp"/>
+      <img src="reibranco.svg" id="rb"/>
+      <img src="reipreto.svg" id="rp"/>
+ 
+
+   </div>
+
+   
+   <script>
+
+      var espaco=0;
+      var tam_casa=60;
+      var posx=0;
+      var posy=0;
+      
+      var matriz= [
+         ["tp","cp","bp","dp","rp","bp","cp","tp"],
+         ["pp","pp","pp","pp","pp","pp","pp","pp"],
+         ["  ","  ","  ","  ","  ","  ","  ","  "],
+         ["  ","  ","  ","  ","  ","  ","  ","  "],
+         ["  ","  ","  ","  ","  ","  ","  ","  "],
+         ["  ","  ","  ","  ","  ","  ","  ","  "],
+         ["pb","pb","pb","pb","pb","pb","pb","pb"],
+         ["tb","cb","bb","db","rb","bb","cb","tb"]
+         
+      ]
+
+      function matriz_tabuleiro() {
+         var canvas = document.getElementById("canvas");
+         var ctx = canvas.getContext("2d");
+         var i=0;
+         var j=0;
+         
+
+         for(i=0 ; i<8 ; i++) {
+            for(j=0 ; j<8 ; j++){
+               if ((j%2==0 && i%2!=0) || (i%2==0 && j%2!=0)) {
+                  ctx.fillStyle = "rgb(15, 71, 109)";
+                  ctx.fillRect(espaco+tam_casa*j,tam_casa*i,tam_casa,tam_casa);
+                  
+                  
+               } else {
+                  ctx.fillStyle = "rgb(244, 219, 218)";
+                  ctx.fillRect(espaco+tam_casa*j,tam_casa*i,tam_casa,tam_casa);
+                  
+               }
+               switch (matriz[i][j]) {
+                  case "pp":
+                     ctx.drawImage(document.getElementById("pp"), espaco+tam_casa*j, tam_casa*i, tam_casa, tam_casa)
+                     break;
+                  case "pb":
+                     ctx.drawImage(document.getElementById("pb"), espaco+tam_casa*j, tam_casa*i, tam_casa, tam_casa)
+                     break;
+                  case "tb":
+                     ctx.drawImage(document.getElementById("tb"), espaco+tam_casa*j, tam_casa*i, tam_casa, tam_casa)
+                     
+                     break;
+                  case "tp":
+                     ctx.drawImage(document.getElementById("tp"), espaco+tam_casa*j, tam_casa*i, tam_casa, tam_casa)
+                     
+                     break;
+                  case "cb":
+                     ctx.drawImage(document.getElementById("cb"), espaco+tam_casa*j, tam_casa*i, tam_casa, tam_casa)
+                     
+                     break;
+                  case "cp":
+                     ctx.drawImage(document.getElementById("cp"), espaco+tam_casa*j, tam_casa*i, tam_casa, tam_casa)
+                     
+                     break;
+                  case "bb":
+                     ctx.drawImage(document.getElementById("bb"), espaco+tam_casa*j, tam_casa*i, tam_casa, tam_casa)
+                     
+                     break;
+                  case "bp":
+                     ctx.drawImage(document.getElementById("bp"), espaco+tam_casa*j, tam_casa*i, tam_casa, tam_casa)
+                        
+                     break;
+                  case "db":
+                     ctx.drawImage(document.getElementById("db"), espaco+tam_casa*j, tam_casa*i, tam_casa, tam_casa)
+                           
+                     break;
+                  case "dp":
+                     ctx.drawImage(document.getElementById("dp"), espaco+tam_casa*j, tam_casa*i, tam_casa, tam_casa)
+                           
+                     break;
+                  case "rb":
+                     ctx.drawImage(document.getElementById("rb"), espaco+tam_casa*j, tam_casa*i, tam_casa, tam_casa)
+                     
+                     break;
+                  case "rp":
+                     ctx.drawImage(document.getElementById("rp"), espaco+tam_casa*j, tam_casa*i, tam_casa, tam_casa)
+                     
+                     break;
+               
+                  default:
+                     break;
+               }
+            }
+    
+         }
+         ctx.strokeRect(espaco,0,480,480)
+
+         window.requestAnimationFrame(matriz_tabuleiro);
+      }
+      
+      function descricao() {
+         var canvas = document.getElementById('canvas');
+         var ctx = canvas.getContext('2d');
+
+            ctx.fillStyle = "black";
+         
+            ctx.font = "45px serif";
+            ctx.fillText("Esta página exibe um conteudo feito com canvas", 600, 50);
+            ctx.font = "30px serif";
+            ctx.fillText("Aqui está sendo exibido um tabuleiro de xadrez com peças interativas", 600, 80);
+            ctx.fillText("Clique nas peças e arraste para movê-las", 600, 140);
+
+
+            ctx.beginPath();
+            ctx.arc(750, 300, 50, 0, Math.PI * 2, true); // Outer circle
+            ctx.moveTo(785, 300);
+            ctx.arc(750, 300, 35, 0, Math.PI, false);  // Mouth (clockwise)
+            ctx.moveTo(740, 290);
+            ctx.arc(735, 290, 5, 0, Math.PI * 2, true);  // Left eye
+            ctx.moveTo(770, 290);
+            ctx.arc(765, 290, 5, 0, Math.PI * 2, true);  // Right eye
+            ctx.stroke();
+
+         
+         
+
+
+      }
+
+      
+      
+
+      function relogio(ctx) {
+         ctx.fillStyle = "rgb(15, 71, 109)";
+         ctx.fillRect(50+tam_casa*j,tam_casa*i,tam_casa,tam_casa);
+      }
+ 
+
+      function draw() {
+         var canvas = document.getElementById("canvas");
+         
+         
+         canvas.addEventListener('mousedown', function(e) {
+            var x=e.clientX;
+            var y=e.clientY;
+
+            posx=parseInt(x/tam_casa,10);
+            posy=parseInt(y/tam_casa,10);
+            console.log(posx);
+            console.log(posy);
+            
+
+          });
+
+
+         canvas.addEventListener('mouseup', function(e) {
+            
+            if(posx<=7 && posy<=7) {
+               var x=e.clientX;
+               var y=e.clientY;
+            
+               var posfx=parseInt(x/tam_casa,10);
+               var posfy=parseInt(y/tam_casa,10);
+
+               if(posfx<=7 && posfy<=7) {
+                  if(matriz[posfy][posfx]!=matriz[posy][posx]){
+                     matriz[posfy][posfx]=matriz[posy][posx];
+                     matriz[posy][posx]="  ";
+
+                  }
+                  
+               }
+               
+               console.log(posfx);
+               console.log(posfy);
+
+            }
+            
+
+
+   
+         });
+
+         if(canvas.getContext) {
+
+
+            window.requestAnimationFrame(matriz_tabuleiro);
+         }
+
+
+
+      }
+      
+
+      
+   </script>
+      
+</body>
+</html>
