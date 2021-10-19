@@ -6,6 +6,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Canvas</title>
 
+   <!-- meta tags para o OpenGraph -->
    <meta property="og:title" content="Xadrez usando Canvas">
    <meta property="og:description" content="Esta página exibe um tabuleiro de xadrez com peças interativas">
    <meta property="og:type" content="article">
@@ -30,10 +31,12 @@
 <body onload="draw(); descricao(); " style="background-color:rgb(148, 224, 247);">
 
    <div>
-      <canvas id="canvas" width="1500px" height="540px">Este Navegador não possui suporte para canvas</canvas>
+      <!-- Definição do canvas -->
+      <canvas id="canvas" width="1500px" height="540px">Este Navegador não possui suporte para canvas</canvas> 
    </div>
    
    <div style="display: none">
+      <!-- atribuição do id as imagens .svg das peças do tabuleiro-->
       <img src="peaobranco.svg" id="pb"/>
       <img src="peaopreto.svg" id="pp"/>
       <img src="torrebranca.svg" id="tb"/>
@@ -58,6 +61,7 @@
       var posx=0;
       var posy=0;
       
+      /* criação da matriz que armazena strings que representam a posição que as peças são postas inicialmente */
       var matriz= [
          ["tp","cp","bp","dp","rp","bp","cp","tp"],
          ["pp","pp","pp","pp","pp","pp","pp","pp"],
@@ -70,6 +74,7 @@
          
       ]
 
+      /* função desenha o tabuleiro e posiciona as peças */
       function matriz_tabuleiro() {
          var canvas = document.getElementById("canvas");
          var ctx = canvas.getContext("2d");
@@ -148,6 +153,7 @@
          window.requestAnimationFrame(matriz_tabuleiro);
       }
       
+      /* função que exibe algumas descrições da página */
       function descricao() {
          var canvas = document.getElementById('canvas');
          var ctx = canvas.getContext('2d');
@@ -176,26 +182,18 @@
 
 
       }
-
-      
-      
-
-      function relogio(ctx) {
-         ctx.fillStyle = "rgb(15, 71, 109)";
-         ctx.fillRect(50+tam_casa*j,tam_casa*i,tam_casa,tam_casa);
-      }
  
-
+      /* função que é chamada para desenhar o tabuleiro e faz a interação com as peças do tabuleiro usando o mouse */
       function draw() {
          var canvas = document.getElementById("canvas");
          
          
          canvas.addEventListener('mousedown', function(e) {
-            var x=e.clientX;
-            var y=e.clientY;
+            var x=e.clientX;  
+            var y=e.clientY;  //armazena as coordenadas onde foi clicado no mouse
 
             posx=parseInt(x/tam_casa,10);
-            posy=parseInt(y/tam_casa,10);
+            posy=parseInt(y/tam_casa,10);  // define a posição no tabuleiro de acordo com as coordenadas
             console.log(posx);
             console.log(posy);
             
@@ -207,17 +205,17 @@
             
             if(posx<=7 && posy<=7) {
                var x=e.clientX;
-               var y=e.clientY;
+               var y=e.clientY;  //armazena as coordenadas onde o botão do mouse foi solto
             
-               var posfx=parseInt(x/tam_casa,10);
-               var posfy=parseInt(y/tam_casa,10);
+               var posfx=parseInt(x/tam_casa,10);  
+               var posfy=parseInt(y/tam_casa,10);  // define a posição no tabuleiro onde o mouse foi solto de acordo com as coordenadas
 
                if(posfx<=7 && posfy<=7) {
                   if(matriz[posfy][posfx]!=matriz[posy][posx]){
                      matriz[posfy][posfx]=matriz[posy][posx];
                      matriz[posy][posx]="  ";
 
-                  }
+                  } /* altera a matriz onde esta a posição das peças de acordo com as posições onde foi clicado */
                   
                }
                
